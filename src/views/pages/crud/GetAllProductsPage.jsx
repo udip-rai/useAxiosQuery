@@ -2,15 +2,15 @@
 import React from "react";
 
 // Hooks
-import useAxiosQuery from "../../hooks/useAxiosQuery";
+import useAxiosQuery from "../../../hooks/useAxiosQuery";
 
-const ExampleGetPage = () => {
+const GetAllProductsPage = () => {
   // Variables required for the useAxiosQuery
   const m = { method: "get", url: "products" };
   const getAllProductsApi = useAxiosQuery(m);
   const {
     context,
-    data: getAllPostsResponse,
+    data: getAllProductsResponse,
     error,
     failureCount,
     isError,
@@ -23,7 +23,7 @@ const ExampleGetPage = () => {
     mutateAsync,
     reset,
     status,
-  } = getAllProductsApi; // Use only the required variables
+  } = getAllProductsApi; // Use only the required variables For eg:: const {isLoading, data: response } = getAllProductsApi
 
   console.log("getAllProductsApi", getAllProductsApi);
 
@@ -34,21 +34,24 @@ const ExampleGetPage = () => {
 
   return (
     <div>
-      <h3>Example: Get Api call</h3>
       <p>(You can also check the console for the data)</p>
-      <button onClick={handleGetApiClick}>Initiate the api call (get)</button>
-
+      <hr />
+      <hr />
+      <button
+        style={{
+          backgroundColor: "black",
+          color: "#ccc",
+          padding: "10px 20px",
+        }}
+        onClick={handleGetApiClick}
+      >
+        Get All Products (Click me)
+      </button>
+      <hr />
+      <hr />
       <div>
         <div>
           <p>context: {context?.toString()}</p>
-          <p
-            style={{
-              maxHeight: "300px",
-              overflow: "auto",
-            }}
-          >
-            data: {JSON.stringify(getAllPostsResponse ?? {})}
-          </p>
           <p>error: {JSON.stringify(error ?? {})}</p>
           <p>failureCount: {failureCount}</p>
           <p>isError: {isError?.toString()}</p>
@@ -61,10 +64,18 @@ const ExampleGetPage = () => {
           <p>mutateAsync: {mutateAsync?.toString()}</p>
           <p>reset: {reset?.toString()}</p>
           <p>status: {status?.toString()}</p>
+          <p
+            style={{
+              maxHeight: "300px",
+              overflow: "auto",
+            }}
+          >
+            data: {JSON.stringify(getAllProductsResponse ?? {})}
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
-export default ExampleGetPage;
+export default GetAllProductsPage;
